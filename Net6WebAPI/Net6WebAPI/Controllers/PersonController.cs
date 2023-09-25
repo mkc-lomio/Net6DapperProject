@@ -55,7 +55,7 @@ pageNumber, pageSize, search ?? "", sortColumn, sortType);
                     return new PaginationViewModel<PersonViewModel>(pageNumber, pageSize, count, persons);
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 return NotFound();
             }
