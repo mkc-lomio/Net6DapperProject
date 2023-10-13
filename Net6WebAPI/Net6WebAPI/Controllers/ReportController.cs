@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
+using System.Globalization;
 
 namespace Net6WebAPI.Controllers
 {
@@ -43,10 +44,13 @@ namespace Net6WebAPI.Controllers
 
                 var proc = string.Format(@"[dbo].[kis_spGetEmployeeTimeSheetReport]");
 
+                var startDate = employeeTimeSheet.StartDate.ToString("yyyy-MM-dd");
+                var endDate = employeeTimeSheet.EndDate.ToString("yyyy-MM-dd");
+
                 var param = new DynamicParameters();
                 param.Add("@pEmployeeId", employeeTimeSheet.EmployeeId);
-                param.Add("@pDateStart", "2023-10-01");
-                param.Add("@pDateEnd", "2023-10-15");
+                param.Add("@pDateStart", startDate);
+                param.Add("@pDateEnd", endDate);
 
                 var result = await this.ExecuteSQL<dynamic>(proc, param);
 
